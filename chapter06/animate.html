@@ -7,7 +7,7 @@
 <style>
 #dashboard {
 	width: 110px;
-	background-color: rgb(255,211,224);
+	background-color: rgb(255,128,64);
 	padding: 20px 20px 0 20px;
 	position: absolute;
 	left: -92px;
@@ -19,10 +19,31 @@
 }
 </style>
 <script src="../_js/jquery.min.js"></script>
-
+<script src="../_js/jquery-ui.min.js"></script>
 <script>
 $(document).ready(function() {
- 
+  $('#dashboard').hover(
+    function() {
+      $(this).animate(
+        {
+          left: '0',
+          backgroundColor: 'rgb(27,45,94)'
+        },
+        500,
+        'easeInSine'
+      ); // end animate
+    },
+    function() {
+      $(this).animate(
+        {
+          left: '-92px',
+          backgroundColor: 'rgb(255,128,64)',
+        },
+        1500,
+        'easeOutSine'
+      ); // end animate
+    }
+  ); // end hover
 }); // end ready
 </script>
 </head>
@@ -42,7 +63,7 @@ $(document).ready(function() {
 <div class="content">
 <div class="main">
 <h1>Slide in Dashboard</h1>
-<p>Mouse over the pink stripe on the left edge of this page</p>
+<p>Mouse over the orange stripe on the left edge of this page</p>
 </div>
 </div>
 <footer>
