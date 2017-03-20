@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reponsive Navigation Menu</title>
+<link href="../_css/site.css" rel="stylesheet" />
+<link href="smartmenus/sm-core-css.css" rel="stylesheet" />
+<link href="smartmenus/sm-mymenu.css" rel="stylesheet" />
+<script src="../_js/jquery.min.js"></script>
+<script src="smartmenus/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.sm').smartmenus({
+    showFunction: function($ul, complete) {
+      $ul.fadeIn(100, complete);
+    },
+    hideFunction: function($ul, complete) {
+      $ul.fadeOut(100, complete);
+    }
+  }); // end smartmenus
+}); // end ready
+</script>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    JAVASCRIPT <span class="amp">&amp;</span> jQUERY: THE&nbsp;MISSING&nbsp;MANUAL
+  </header>
+  <div class="content">
+    <div class="main">
+      <h1>Navigation Menu</h1>
+      <ul class="sm sm-clean">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About </a>
+          <ul>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Address</a></li>
+            <li><a href="#">Hours of Operation</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Products </a>
+          <ul>
+            <li><a href="#">Bikes </a>
+              <ul>
+                <li><a href="#">Road Bikes</a></li>
+                <li><a href="#">Mountain Bikes</a></li>
+                <li><a href="#">Commuter Bikes</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Accessories </a>
+              <ul>
+                <li><a href="#">Helmets</a></li>
+                <li><a href="#">Bags</a></li>
+                <li><a href="#">Tools</a>
+                  <ul>
+                    <li><a href="#">Bike Computers</a></li>
+                    <li><a href="#">Bike Lights</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Time Machines</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p style="clear:both;padding-top: 20px;" >Example of a responsive navigation menu using jQuery and Berriart's <a href="https://www.berriart.com/sidr">SIDR Plugin</a>.</p>
+    </div>
+  </div>
+<footer>
+    <p>JavaScript &amp; jQuery: The Missing Manual, 3rd Edition, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+</footer>
+</div>
+</body>
+</html>
