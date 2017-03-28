@@ -7,8 +7,33 @@
 <script src="../_js/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-
-}); // end ready
+  // focus on first input in form
+  $(':text:first').focus();
+  
+  // if user checks Paypal, disable inputs in creditCard div
+  $('#paypal').click(function() {
+  $('#creditCard input').prop('disabled', true)
+                        // make form elements 'look' disabled
+                        .css('backgroundColor','#CCC');
+  $('#creditCard label').css('color','#BBB');
+  }); // end click
+  
+  // if user checks Visa or Mastercard after, revert to default
+  $('#visa, #mastercard').click(function() {
+    $('#creditCard input').prop('disabled', false)
+                          .css('backgroundColor','');
+    $('#creditCard label').css('color','');
+  }); // end click
+  
+  // hide shipping div if billing information is the same
+  $('#hideShip').click(function() {
+    if ($(this).prop('checked')) {
+      $('#shipping').slideUp('fast');
+    } else {
+      $('#shipping').slideDown('fast'); // revert to default
+    }
+  }); // end click
+}); // end ready()
 </script>
 </head>
 <body>
