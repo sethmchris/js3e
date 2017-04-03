@@ -6,6 +6,17 @@
 <link href="../_css/site.css" rel="stylesheet">
 <style>
 
+#signup label.error {
+	font-size: 0.8em;
+	color: #F00;
+	font-weight: bold;
+	display: block;
+	margin-left: 215px;
+}
+#signup input.error, #signup select.error {
+	background: #FFA9B8;
+	border: 1px solid red;
+}
 </style>
 <script src="../_js/jquery.min.js"></script>
 <script src="jquery_validate/jquery.validate.min.js"></script>
@@ -13,7 +24,6 @@
 $(document).ready(function() {
 	// validate form with validation plugin
 	$('#signup').validate({
-		// validation rules
 		rules: {
 			email: {
 				required: true,
@@ -30,7 +40,6 @@ $(document).ready(function() {
 				equalTo: '#password'
 			}
 		}, // end rules
-		// error messages
 		messages: {
 			email: {
 				required: "Please supply your email address.",
@@ -44,14 +53,17 @@ $(document).ready(function() {
 				equalTo: 'The two passwords do not match.'
 			}
 		}, // end messages
+
+		// place error message just before closing div tags of radio and checkbox
 		errorPlacement: function(error, element) {
-			if ( element.is(":radio") || element.is("checkbox")) {
+			if ( element.is(":radio") || element.is(":checkbox")) {
 				error.appendTo( element.parent());
 			} else {
 				error.insertAfter(element);
 			}
-		} // end error placement
-	}); // end validate()
+		} // end errorPlacement
+
+	}); // end validate
 }); // end ready()
 </script>
 </head>
@@ -82,7 +94,6 @@ $(document).ready(function() {
 				<input name="confirm_password" type="password" id="confirm_password">
 			</div>
 			<div><span class="label">Hobbies</span>
-			<!-- validation rule applies to all input boxes with name="hobby" -->
 				<input name="hobby" type="checkbox" id="heliskiing" value="heliskiing" class="required" title="Please check at least 1 hobby.">
 				<label for="heliskiing">Heli-skiing</label>
 				<input name="hobby" type="checkbox" id="pickle" value="pickle">
@@ -111,7 +122,7 @@ $(document).ready(function() {
 			<div class="labelBlock">Would you like to receive annoying e-mail from us? </div>
 			<div class="indent">
 			<!-- validation rule applies to all input boxes with name="spam" -->
-				<input  type="radio" name="spam" id="yes" value="yes" class="required" title="Please select an option">
+				<input  type="radio" name="spam" id="yes" value="yes" class="required" title="Please select an option.">
 				<label for="yes">Yes</label>
 				<input type="radio" name="spam" id="definitely" value="definitely">
 				<label for="definitely">Definitely</label>
