@@ -8,10 +8,25 @@
 <link href="form.css" rel="stylesheet">
 <script src="../_js/jquery.min.js"></script>
 <script src="../_js/jquery-ui.min.js"></script>
-
+<script src="airports.js"></script>
 <script>
 $(document).ready(function() {
-  
+  // add datepicker
+  $('#departure').datepicker({
+  	minDate : 0,
+	maxDate: '+1y'
+  });
+  // autocomplete with airports.js
+  $('#airport').autocomplete({ source: airports});
+  $('#meal').selectmenu( { width: 200 } );
+  // make form button-oriented
+  $('#bags').buttonset();
+  $('#seatTypes').buttonset();
+  $('#next').button({
+  	  icons: {
+  	  	secondary : 'ui-icon-circle-arrow-e'
+  	  }
+  });
 }); // end ready
 </script>
 </head>
