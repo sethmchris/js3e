@@ -9,13 +9,36 @@
 <script src="../_js/jquery.min.js"></script>
 <script src="../_js/jquery-ui.min.js"></script>
 <script>
+/*
+# Changelog
+## []  04-17-2017
+### Added
+ - faster revert speed
+ - 
+ */
 $(document).ready(function() {
-  $('#phtos img').draggable({
-  	revert : 'invalid',
+  $('#photos img').draggable({
+  	// snap back into place if dropped outside droppable()
+  	revert : "invalid",
+  	revertDuration: 200,
   	start : function (event, ui) {
-  		
-  	}
-  });
+			ui.helper.css('transform', 'rotate(5deg) scale(1.5)');
+  	},
+  	stop : function (event, ui) {
+  		ui.helper.css('transform', 'rotate(0deg) scale(1)');
+  	},
+  	// keep clicked image on top of other #photos
+  	zIndex: 100
+  }); // end draggable
+
+  $('#trashcan').droppable({
+  	// change the opacity to 1 (see "interactions.css")
+  	activeClass : 'highlight',
+	  	drop : function (event, ui) {
+	  		ui.helper.hide('explode');
+	  		$(this).attr('src','../_images/trashcan-full-icon.png');
+	  	}
+  }); // end droppable
 }); // end ready
 </script>
 </head>
