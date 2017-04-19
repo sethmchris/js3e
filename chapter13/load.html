@@ -28,9 +28,11 @@
 <script src="../_js/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	
-
-			
+	$('#newslinks a').click(function() {
+		var url=$(this).attr('href'); // get url
+		$('#headlines').load(url + ' #newsItem'); // only load #newsItem
+		return false; // prevent default
+	}); // end click
 }); // end ready
 </script>
 </head>

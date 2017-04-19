@@ -2,6 +2,11 @@
 
 ## Commit Instructions
 ---
+
+When you need to edit use the following commands.
+
+	* git pull origin master
+
 When you need to commit use the following commands.
 
 	* git status
