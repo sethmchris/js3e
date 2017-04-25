@@ -1,12 +1,11 @@
 $(document).ready(function(e) {
+
 	$('#add-todo').button({
 		icons: {
-			icons: {
-				primary: "ui-icon-circle-plus"
+			primary: "ui-icon-circle-plus"
 			}
-		}
-	}).click(function() {
-		$('#new-todo').dialog('open');
+		}).click(function() {
+			$('#new-todo').dialog('open');
 	}); // end button
 
 	$('#new-todo').dialog({
@@ -14,11 +13,49 @@ $(document).ready(function(e) {
 		autoOpen: false,
 		buttons : {
 			"Add task" : function () {
-
+				var taskName = $('#task').val();
+				if (taskName === '') {
+					return false;
+				}
+				var taskHTML = '<li><span class="done">%</span>';
+				taskHTML += '<span class="delete">x</span>';
+				taskHTML += '<span class = "task"></span></li>';
+				var $newTask = $(taskHTML);
+				$newTask.find('.task').text(taskName);
+				$newTask.hide();
+				$('#todo-list').prepend($newTask);
+				$newTask.show('clip',250).effect('highlight',1000);
+				$(this).dialog('close');
 			},
-			"Cancel": function () {
+			"Cancel" : function () {
 				$(this).dialog('close');
 			}
+		},
+		close: function() {
+			$('#new-todo input').val('');
 		}
 	}); // end dialog
+
+	$('#todo-list').on('click', '.done', function() {
+		var $taskItem = $(this).parent('li');
+		$taskItem.slideUp(250, function() {
+			var $this = $(this);
+			$this.detach();
+			$('#completed-list').prepend($this);
+			$this.slideDown();
+		});
+	}); // end click
+
+	$('.sortlist').sortable({
+		connectWith : '.sortlist',
+		cursor : 'pointer',
+		placeholder : 'ui-state-highlight',
+		cancel : '.delete,.done'
+	});
+
+	$('.sortlist').on('click','.delete',function() {
+		$(this).praent('li').effect('puff', function() {
+			$(this).remove();
+		});
+	});
 }); // end ready
